@@ -6,15 +6,16 @@ Requires at least:
 Tested up to: 2.7
 Stable tag: 0.18
 
-Create widgets by using the <a href="http://wordpress.org/extend/plugins/statpress-reloaded/">Statpress Plugin</a> data.
+Stats-Widgets by using the db-data of the Statpress plugin.
 
 == Description ==
 
-This first version generates sidebar for the the top and last referrers. 
-Features: In-/Excluding search engines, Bad words list,  display counts. 
-The widget is completle setable. 
+This first version of the plugin generates a sidebar, a listing of top and last referrer-urls from you're blogs visitors. <a href="http://wordpress.org/extend/plugins/statpress-reloaded/">Statpress Reloaded</a> is required.
 <br/>
-Next versions will contain widgets for top search engines and terms, top browsers, spiders an so on.	
+Referrer widgets features: Filter search engines, bad words, display counts. 
+<br/>
+<br/>
+Next versions will contain a widget-collecton of hits, engines and terms, operating-systems, countries, spiders and so on.
 
 == Installation ==
 
@@ -24,8 +25,8 @@ Next versions will contain widgets for top search engines and terms, top browser
 
 == Screenshots ==
 
-1. The referrers widget
-2. The widget controls
+1. Widget settings
+2. Display referrers 
 
 
 

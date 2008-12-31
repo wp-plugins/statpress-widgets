@@ -2,7 +2,7 @@
 /*
 Plugin Name: SP Widgets
 Plugin URI: http://blog.hooda.de/
-Description: Show widgets by using the <a href="http://wordpress.org/extend/plugins/statpress-reloaded/" target="_blank">Statpress Plugin</a> table data
+Description: Stats-Widgets by using the data from the <a href="http://wordpress.org/extend/plugins/statpress-reloaded/" target="_blank">Statpress Plugin</a>
 Version: 0.18
 Author: Jan A. Manolov
 Author URI: http://blog.hooda.de/
