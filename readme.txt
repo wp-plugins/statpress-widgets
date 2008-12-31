@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: jan
 Donate link: 
-Tags: statpress, statistics widget, widgets, referrers 
+Tags: StatPress, statistics widget, stats, referrers 
 Requires at least: 
 Tested up to: 2.7
 Stable tag: 0.18
