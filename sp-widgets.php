@@ -1,46 +1,45 @@
 <?php
 /*
 Plugin Name: SP Widgets
-Plugin URI: http://blog.hooda.de/
+Plugin URI: http://blog.webhike.de/
 Description: Stats-Widgets by using the data from the <a href="http://wordpress.org/extend/plugins/statpress-reloaded/" target="_blank">Statpress Plugin</a>
-Version: 0.18
+Version: 0.29
 Author: Jan A. Manolov
-Author URI: http://blog.hooda.de/
+Author URI: http://blog.webhike.de/
 */
 
-
+	
 	include "sp-widget-referrers.php";
+	include "sp-widget-searchengines.php";
 	
 
 	class SP_Widgets {
 		
 		static function init() {
-
+	
 		  if (!function_exists('register_sidebar_widget')
 			|| !function_exists('register_widget_control'))
 				return;
+				
+			//for updates from 0.18 to 0.29
+			if (get_option('sp_widgets_options')) 
+				delete_option('sp_widgets_options');
 			
 			$widget_referrers = new SP_Widget_Referrers();
+			$widget_searchengines = new SP_Widget_SearchEngines();
 		}
 		
 							
 		static function aktivate_plugin() {
-		
-			$options = array (
-				referrers_top_title 		=> 'Hot Referrers',
-				referrers_top_max 		=> 5,
-				referrers_top_counts 	=> 1,
-				referrers_last_title 	=> 'Last Referrers',
-				referrers_last_max 		=> 5,
-				referrers_badwords 		=> array('boln.cn'),
-				referrers_searchengines => 0
-			);
 			
-			add_option('sp_widgets_options', $options);
+			SP_Widget_Referrers::add_options();
+			SP_Widget_SearchEngines::add_options();
 		}
 		
 		static function deaktivate_plugin() {
-			delete_option('sp_widgets_options');
+		
+			SP_Widget_Referrers::delete_options();
+			SP_Widget_SearchEngines::delete_options();
 		}		
 			
 	}

@@ -2,17 +2,37 @@
 
 	class SP_Widget_Referrers {
 	
+		//need to aktivate
+		static function add_options () { 
+		
+			$default_options = array (
+				referrers_top_title 		=> 'Hot Referrers',
+				referrers_top_max 		=> 5,
+				referrers_top_counts 	=> 1,
+				referrers_last_title 	=> 'Last Referrers',
+				referrers_last_max 		=> 5,
+				referrers_badwords 		=> array('boln.cn'),
+				referrers_searchengines => 0
+			);
+			
+			add_option('sp_widgets_referrers', $default_options);
+		}		
+	
+		static function delete_options () {
+			delete_option('sp_widgets_referrers', $default_options);
+		}
+	
 		function SP_Widget_Referrers() {
 		
-			register_sidebar_widget ('SP Widgets',array($this,'display'));
-			register_widget_control ('SP Widgets',array($this,'control'), 200, 350);	
+			register_sidebar_widget ('SPW Refererrers',array($this,'display'));
+			register_widget_control ('SPW Refererrers',array($this,'control'), 200, 350);	
 		}
 		
 
 		function display ($args) {
 			
 			extract ($args);
-			extract (get_option('sp_widgets_options'));
+			extract (get_option('sp_widgets_referrers'));
 			
 			if ($referrers_top_max)
 				$top_referrers = $this->get_top_referrers_data($referrers_top_max, $referrers_badwords, $referrers_searchengines);
@@ -65,10 +85,10 @@
 			
 			$q = "SELECT *
 					FROM wp_statpress
-					WHERE spider='' AND referrer != '' AND referrer not like '%blog.hooda.de%' $qwhere
+					WHERE spider='' AND referrer != '' $qwhere
 					ORDER BY id DESC 
 					LIMIT 0, 100";
-			$row_referrers = $wpdb->get_results($q);
+			$row_referrers = $wpdb->get_results($q, OBJECT);
 			
 			//search equal hosts and compress them
 			foreach ($row_referrers as $ref) {
@@ -107,10 +127,11 @@
 			
 			$q = "SELECT referrer,count(*) as totale
 					FROM wp_statpress
-					WHERE spider='' AND referrer != '' AND referrer not like '%blog.hooda.de%' $qwhere
+					WHERE spider='' AND referrer != '' $qwhere
 					GROUP BY referrer
-					ORDER BY totale DESC";
-			$row_referrers = $wpdb->get_results($q);
+					ORDER BY totale DESC
+					LIMIT 0, 100";
+			$row_referrers = $wpdb->get_results($q, OBJECT);
 		
 			//search equal hosts and compress them
 			foreach ($row_referrers as $ref) {
@@ -150,18 +171,16 @@
 		// Admin sets			
 		
 		function control () {
-		
-			$options = get_option('sp_widgets_options');
 			
 			//setup options
 			if ($_POST['sp_widgets_referrers_submit']) {
 
 				$options['referrers_top_title'] 		= trim(strip_tags(stripslashes($_POST['sp_widgets_referrers_top_title'])));
-				$options['referrers_top_max'] 		= strip_tags(stripslashes($_POST['sp_widgets_referrers_top_max']));
+				$options['referrers_top_max'] 		= (int) strip_tags(stripslashes($_POST['sp_widgets_referrers_top_max']));
 				$options['referrers_top_counts'] 	= $_POST['sp_widgets_referrers_top_counts']=='on' ? true : false;
 				
 				$options['referrers_last_title'] 	= trim(strip_tags(stripslashes($_POST['sp_widgets_referrers_last_title'])));
-				$options['referrers_last_max'] 		= strip_tags(stripslashes($_POST['sp_widgets_referrers_last_max']));
+				$options['referrers_last_max'] 		= (int) strip_tags(stripslashes($_POST['sp_widgets_referrers_last_max']));
 				
 				$options['referrers_searchengines'] = $_POST['sp_widgets_referrers_searchengines']=='on' ? true : false;
 				$options['referrers_badwords'] 		= array();
@@ -170,18 +189,20 @@
 					if ($word=trim($word))
 						array_push ($options['referrers_badwords'], $word);
 				
-				update_option('sp_widgets_options', $options);
+				update_option('sp_widgets_referrers', $options);
 			}
+			else 
+				$options = get_option('sp_widgets_referrers');
 			
 			?>
 			<table>
 			<tr>
 				<td colspan="2"><b>Last Referrers</b></td>
 			</tr><tr>
-				<td><label for="sp_widgets_referrers_last_title">Titel:</label></td>
+				<td><label for="sp_widgets_referrers_last_title">Title:</label></td>
 				<td><input type="text" id="sp_widgets_referrers_last_title" name="sp_widgets_referrers_last_title" value="<?php echo $options['referrers_last_title'] ?>" /></td>
 			</tr><tr>
-				<td><label for="sp_widgets_referrers_last[max]">Limit:</label></td>
+				<td><label for="sp_widgets_referrers_last_max">Limit:</label></td>
 				<td><input type="text" id="sp_widgets_referrers_last_max" name="sp_widgets_referrers_last_max" style="width:75px;" value="<?php echo $options['referrers_last_max'] ?>" /> (0 = none)</td>
 			</tr><tr>
 			<td colspan="2">&nbsp;</td>
@@ -189,7 +210,7 @@
 			</tr><tr>	
 				<td colspan="2"><b>Top Referrers</b></td>
 			</tr><tr>
-				<td><label for="sp_widgets_referrers_top_title">Titel:</label></td>
+				<td><label for="sp_widgets_referrers_top_title">Title:</label></td>
 				<td><input type="text" id="sp_widgets_referrers_top_title" name="sp_widgets_referrers_top_title" value="<?php echo $options['referrers_top_title'] ?>" /></td>
 			</tr><tr>
 				<td><label for="sp_widgets_referrers_top_max">Limit:</label></td>
@@ -210,7 +231,7 @@
 			<td colspan="2">&nbsp;</td>
 			
 			</tr><tr>				
-				<td><label for="sp_widgets_referrers_badwords">Filter words:</label></td>
+				<td><label for="sp_widgets_referrers_badwords">Filter hosts:</label></td>
 				<td><input type="text" id="sp_widgets_referrers_badwords" name="sp_widgets_referrers_badwords" value="<?php echo implode(', ', $options['referrers_badwords']); ?>" />
 					<small>Separate by coma</small>
 				</td>

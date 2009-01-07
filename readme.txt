@@ -1,20 +1,35 @@
 === Plugin Name ===
-Contributors: jan
+Contributors: Jan A. Manolov
 Donate link: 
-Tags: StatPress, statistics widget, stats, referrers 
+Tags: StatPress, StatPress Reloaded, statistics widget, widgets, sidebar, referrers, search engines, search terms, stats
 Requires at least: 
 Tested up to: 2.7
 Stable tag: 0.18
 
-Stats-Widgets by using the db-data of the Statpress plugin.
+Create widgets by using the Statpress Plugin data.
 
 == Description ==
 
-This first version of the plugin generates a sidebar, a listing of top and last referrer-urls from you're blogs visitors. <a href="http://wordpress.org/extend/plugins/statpress-reloaded/">Statpress Reloaded</a> is required.<br/>
+Display search engines and referrer statics on you're sidebar. 
+
+This Plugin uses the Database data from the <a href="http://wordpress.org/extend/plugins/statpress-reloaded/">Statpress plugin</a>.
+
+Referrer Widget
+Features: In-/Excluding search engines, bad hosts filter, display counts. 
+
+New in the 0.29 Version:
+
+Search Engines Widget
+Features: Top Search Engines, optionaly show counts, Top search terms, terms filter.
+
+Bugfixes for the actual version
+- DB-query fixed
+- Plugin options adapted
+
 <br/>
-Referrer widgets features: Filter search engines, bad words, display counts. <br/>
+The widgets are completle setable. 
 <br/>
-Next versions will contain a widget-collecton of hits, engines and terms, operating-systems, countries, spiders and so on.
+Next versions will contain widgets for browsers, spiders, countries an so on.	
 
 == Installation ==
 
@@ -24,8 +39,9 @@ Next versions will contain a widget-collecton of hits, engines and terms, operat
 
 == Screenshots ==
 
-1. Widget settings
-2. Display referrers 
-
+1. Referrers widget
+2. Widget controls
+3. Search engine controls. 
+Take a look at <a href="http://blog.webhike.de">my homepage</a> to see the Engines Widget in action.
 
 
