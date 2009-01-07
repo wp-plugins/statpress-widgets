@@ -4,7 +4,7 @@ Donate link:
 Tags: StatPress, StatPress Reloaded, statistics widget, widgets, sidebar, referrers, search engines, search terms, stats
 Requires at least: 
 Tested up to: 2.7
-Stable tag: 0.18
+Stable tag: 0.29
 
 Create widgets by using the Statpress Plugin data.
 
