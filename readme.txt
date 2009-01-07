@@ -12,25 +12,16 @@ Create widgets by using the Statpress Plugin data.
 
 Display search engines and referrer statics on you're sidebar. 
 
-This Plugin uses the Database data from the <a href="http://wordpress.org/extend/plugins/statpress-reloaded/">Statpress plugin</a>.
-
 Referrer Widget
-Features: In-/Excluding search engines, bad hosts filter, display counts. 
+Features: Top and last referrers, hosts filter, display counts. 
 
-New in the 0.29 Version:
-
-Search Engines Widget
+New in the 0.29 Version: Search Engines Widget
 Features: Top Search Engines, optionaly show counts, Top search terms, terms filter.
 
-Bugfixes for the actual version
-- DB-query fixed
-- Plugin options adapted
-
 <br/>
-The widgets are completle setable. 
-<br/>
-Next versions will contain widgets for browsers, spiders, countries an so on.	
+The widgets are completle setable. Next versions will contain widgets for browsers, spiders, countries an so on.	
 
+This Plugin uses the Database data from the <a href="http://wordpress.org/extend/plugins/statpress-reloaded/">Statpress plugin</a>.
 == Installation ==
 
 1. Extract the folder "sp-widgets" from the zip file and upload it to the "/wp-content/plugins/" directory
